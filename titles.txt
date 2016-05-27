@@ -1,0 +1,15 @@
+#Titoli
+
+ - Progettazione e implementazione della gestione delle note di credito 
+   all' interno di un programma di fatturazione.
+
+ - Implementazione della gestione delle note di credito in un progetto di 
+   fatturazione elettronica.
+
+ - Realizzazione della nota di credito all' interno di un progetto di 
+   fatturazione elettronica.
+
+ - Realizzazione della nota di credito all' interno di un software di fatturazione 
+   elettronica.
+
+ - Sviluppo della gestione delle note di credito in un programma di fatturazione
