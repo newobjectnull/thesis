@@ -1,64 +1,48 @@
-\documentclass[12pt,a4paper,twoside,openright]{book}
+\documentclass[12pt,a4paper,twoside,openright]{toptesi}
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{setspace}
-
 \title{Todo}
 \author{Davide Fontana}
-\date{}
-
 \begin{document}
-
-\begin{titlepage}
- 
-\begin{center}
- 
-% Upper part of the page
-\includegraphics[scale=.5]{img/logoBlack}
- 
-\textsc{\LARGE Università degli Studi di Padova}\\[1.5cm]
- 
-\textsc{\Large Dipartimento di Ingegneria dell'Informazione\\[0.2cm] Corso di Laurea in Ingegneria Informatica}\\[0.8cm]
-  
-% Title
-\\[0.8cm]{\Huge \doublespacing\bfseries \begin{spacing}{1}{Titolo tesi}\end{spacing}}
-\\[2cm]
- 
-% Author and supervisor
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Laureando:}\\
-Davide \textsc{Fontana}
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Relatore:} \\
-Ch.mo Prof.\ Carlo \textsc{Ferrari}
-\end{flushright}
-\end{minipage}
- 
-\vfill
- 
-% Bottom of the page
-{\large Anno accademico 2015/2016}
- 
-\end{center}
- 
-\end{titlepage}
-
+\maketitle
 \tableofcontents
-
 \chapter{Introduzione}
+Questa relazione riguarda il tirocinio da me effettuato presso l' azienda 
+Consoft Informatica S.r.l tra Febbraio e Aprile 2016.
+Lo stage è cominciato con una prima parte di formazione sulle tecnologie usate 
+all'interno dell'azienda tra cui Java J2EE, SQL, Hibernate e Spring MVC\@.
+In seguito, dopo la formazione, è seguita una parte pratica con la progettazione
+e la successiva implementazione della gestione delle note di credito di un 
+programma di fatturazione online che, attualmente, è ancora in fase di sviluppo
+all' interno dell' azienda.
 \chapter{Azienda Ospitante}
+\includegraphics[scale=.5]{img/logoConsoft}
+L' azienda in cui è stato svolto il tirocinio è la Consoft Informatica S.r.l
+operante nel settore Information \& Communication
+Tecnology\@.
+Come riportato sul sito ufficiale~\cite{consoft:descrizione}, l'azienda è una
+società giovane, dinamica e innovativa la quale mette a disposizione competenze,
+servizi e strutture professionali tecnologicamente all’avanguardia a medie e 
+grandi imprese al fine di potenziarne al massimo la competitività sul mercato. 
+I professionisti che permettono a Consoft Informatica di perseguire il 
+proprio obiettivo sono altamente qualificati e grazie ad un costante 
+investimento nella formazione attraverso un  addestramento legato alla 
+metodologia del corpo docenti e all’utilizzo di strumenti software avanzati, 
+sono in grado di rispondere alle esigenze del cliente garantendo affidabilità,
+convenienza ed efficienza.
+Consoft Informatica opera con i suoi oltre 150 dipendenti su tutto il territorio
+nazionale e ha 3 sedi ubicate a Padova, Firenze e infine Roma.
 \chapter{Tecnologie utilizzate}
-\section{Spring}
-\section{Hibernate}
-\section{Maven}
+All' inizio della mia esperienza sono stato subito inserito in un corso di 
+formazione in cui la 
 \chapter{Progetto delle Note di Credito}
-
+\begin{thebibliography}{9}
+    \bibitem{consoft:descrizione} Sito ufficiale Consoft Informatica \newline
+    \texttt{http://www.consoftinformatica.it}
+\end{thebibliography}
 \end{document}
 
 
