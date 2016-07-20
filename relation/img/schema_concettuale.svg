@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="34cm" height="16cm" viewBox="114 52 666 302" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="270.366" y="103.745" width="198" height="57"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="270.366" y="103.745" width="198" height="57"/>
+  </g>
+  <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="369.366" y="138.12">
+    <tspan x="369.366" y="138.12">NOTA DI CREDITO</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="581.495" y="295.141" width="198" height="57"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="581.495" y="295.141" width="198" height="57"/>
+  </g>
+  <text font-size="16.9333" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="680.495" y="329.516">
+    <tspan x="680.495" y="329.516">FATTURE</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="594.433" y1="295.299" x2="594.674" y2="258.515"/>
+    <path style="fill: #000000" d="M 594.674 258.515 C 597.174,258.531 599.658,261.048 599.641,263.548 C 599.625,266.048 597.109,268.531 594.609,268.515 C 592.109,268.498 589.625,265.982 589.642,263.482 C 589.658,260.982 592.174,258.499 594.674,258.515z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 594.674 258.515 C 597.174,258.531 599.658,261.048 599.641,263.548 C 599.625,266.048 597.109,268.531 594.609,268.515 C 592.109,268.498 589.625,265.982 589.642,263.482 C 589.658,260.982 592.174,258.499 594.674,258.515"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="588.702" y="255.639">
+    <tspan x="588.702" y="255.639">ID</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="467.745" y1="152.937" x2="503.859" y2="152.865"/>
+    <path style="fill: #000000" d="M 503.859 152.865 C 503.864,155.365 501.369,157.87 498.869,157.875 C 496.369,157.88 493.864,155.385 493.859,152.885 C 493.854,150.385 496.349,147.88 498.849,147.875 C 501.349,147.87 503.854,150.365 503.859,152.865z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 503.859 152.865 C 503.864,155.365 501.369,157.87 498.869,157.875 C 496.369,157.88 493.864,155.385 493.859,152.885 C 493.854,150.385 496.349,147.88 498.849,147.875 C 501.349,147.87 503.854,150.365 503.859,152.865"/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="369.565,292.773 425.484,323.045 369.565,353.317 313.646,323.045 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="369.565,292.773 425.484,323.045 369.565,353.317 313.646,323.045 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="369.565,292.773 425.484,323.045 369.565,353.317 313.646,323.045 "/>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="369.397" y1="161.743" x2="369.534" y2="292.715"/>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="425.542" y1="323.152" x2="580.502" y2="323.449"/>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="369.566" y="327.495">
+    <tspan x="369.566" y="327.495">ASSOCIATA</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="508.959" y="137.783">
+    <tspan x="508.959" y="137.783">id_fattura</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="508.558" y="116.514">
+    <tspan x="508.558" y="116.514">numero_nota_credito</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="243.604" y1="133.528" x2="270.104" y2="133.501"/>
+    <path style="fill: #ffffff" d="M 233.604 133.539 C 233.601,131.039 236.099,128.536 238.599,128.534 C 241.099,128.531 243.601,131.028 243.604,133.528 C 243.607,136.028 241.109,138.531 238.609,138.534 C 236.109,138.536 233.607,136.039 233.604,133.539z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 233.604 133.539 C 233.601,131.039 236.099,128.536 238.599,128.534 C 241.099,128.531 243.601,131.028 243.604,133.528 C 243.607,136.028 241.109,138.531 238.609,138.534 C 236.109,138.536 233.607,136.039 233.604,133.539"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="287.932" y1="79" x2="287.878" y2="104.196"/>
+    <path style="fill: #ffffff" d="M 287.954 69 C 290.454,69.0054 292.948,71.5108 292.943,74.0108 C 292.938,76.5108 290.432,79.0054 287.932,79 C 285.432,78.9946 282.938,76.4892 282.943,73.9892 C 282.948,71.4892 285.454,68.9946 287.954,69z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 287.954 69 C 290.454,69.0054 292.948,71.5108 292.943,74.0108 C 292.938,76.5108 290.432,79.0054 287.932,79 C 285.432,78.9946 282.938,76.4892 282.943,73.9892 C 282.948,71.4892 285.454,68.9946 287.954,69"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="242.702" y1="112.142" x2="269.45" y2="111.998"/>
+    <path style="fill: #ffffff" d="M 232.702 112.196 C 232.689,109.696 235.175,107.182 237.675,107.169 C 240.175,107.155 242.688,109.642 242.702,112.142 C 242.715,114.642 240.229,117.155 237.729,117.169 C 235.229,117.182 232.715,114.696 232.702,112.196z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 232.702 112.196 C 232.689,109.696 235.175,107.182 237.675,107.169 C 240.175,107.155 242.688,109.642 242.702,112.142 C 242.715,114.642 240.229,117.155 237.729,117.169 C 235.229,117.182 232.715,114.696 232.702,112.196"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="331.264" y="184.222">
+    <tspan x="331.264" y="184.222">(1,1)</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="533.202" y="306.337">
+    <tspan x="533.202" y="306.337">(0,n)</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="346.448" y="65.1214">
+    <tspan x="346.448" y="65.1214">importo</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="247.358" y="64.8322">
+    <tspan x="247.358" y="64.8322">iva_calcolata</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="114.8" y="115.823">
+    <tspan x="114.8" y="115.823">totale_rimanente</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="121.728" y="157.145">
+    <tspan x="121.728" y="157.145">contenuto_report</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="467.517" y1="112.54" x2="503.632" y2="112.468"/>
+    <path style="fill: #000000" d="M 503.632 112.468 C 503.637,114.968 501.142,117.473 498.642,117.478 C 496.142,117.483 493.637,114.988 493.632,112.488 C 493.627,109.988 496.122,107.483 498.622,107.478 C 501.122,107.473 503.627,109.968 503.632,112.468z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 503.632 112.468 C 503.637,114.968 501.142,117.473 498.642,117.478 C 496.142,117.483 493.637,114.988 493.632,112.488 C 493.627,109.988 496.122,107.483 498.622,107.478 C 501.122,107.473 503.627,109.968 503.632,112.468"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="509.374" y="158.135">
+    <tspan x="509.374" y="158.135">id</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="469.316" y1="132.828" x2="492.948" y2="132.966"/>
+    <path style="fill: #ffffff" d="M 502.948 133.024 C 502.933,135.524 500.419,138.009 497.919,137.995 C 495.419,137.98 492.933,135.466 492.948,132.966 C 492.962,130.466 495.477,127.98 497.977,127.995 C 500.477,128.009 502.962,130.524 502.948,133.024z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 502.948 133.024 C 502.933,135.524 500.419,138.009 497.919,137.995 C 495.419,137.98 492.933,135.466 492.948,132.966 C 492.962,130.466 495.477,127.98 497.977,127.995 C 500.477,128.009 502.962,130.524 502.948,133.024"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="146.504" y="137.738">
+    <tspan x="146.504" y="137.738">nome_report</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="244.312" y1="152.967" x2="269.982" y2="152.995"/>
+    <path style="fill: #ffffff" d="M 234.312 152.956 C 234.315,150.456 236.817,147.959 239.317,147.962 C 241.817,147.964 244.315,150.467 244.312,152.967 C 244.309,155.467 241.807,157.964 239.307,157.962 C 236.807,157.959 234.309,155.456 234.312,152.956z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 234.312 152.956 C 234.315,150.456 236.817,147.959 239.317,147.962 C 241.817,147.964 244.315,150.467 244.312,152.967 C 244.309,155.467 241.807,157.964 239.307,157.962 C 236.807,157.959 234.309,155.456 234.312,152.956"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="369.276" y1="78.5169" x2="369.174" y2="104.902"/>
+    <path style="fill: #ffffff" d="M 369.314 68.517 C 371.814,68.5266 374.304,71.0362 374.295,73.5362 C 374.285,76.0362 371.776,78.5265 369.276,78.5169 C 366.776,78.5073 364.285,75.9977 364.295,73.4977 C 364.305,70.9977 366.814,68.5074 369.314,68.517z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 369.314 68.517 C 371.814,68.5266 374.304,71.0362 374.295,73.5362 C 374.285,76.0362 371.776,78.5265 369.276,78.5169 C 366.776,78.5073 364.285,75.9977 364.295,73.4977 C 364.305,70.9977 366.814,68.5074 369.314,68.517"/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="447.702" y1="66.8332" x2="447.624" y2="103.029"/>
+    <path style="fill: #000000" d="M 447.702 66.8332 C 450.202,66.8386 452.697,69.344 452.691,71.844 C 452.686,74.344 450.181,76.8386 447.681,76.8332 C 445.181,76.8278 442.686,74.3224 442.691,71.8224 C 442.697,69.3224 445.202,66.8278 447.702,66.8332z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 447.702 66.8332 C 450.202,66.8386 452.697,69.344 452.691,71.844 C 452.686,74.344 450.181,76.8386 447.681,76.8332 C 445.181,76.8278 442.686,74.3224 442.691,71.8224 C 442.697,69.3224 445.202,66.8278 447.702,66.8332"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="431.686" y="64.5">
+    <tspan x="431.686" y="64.5">data_emissione</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 481.666,129.745 A 41.1563,41.1563 0 0 0 425.666,86.745"/>
+    <path style="fill: #000000" d="M 425.666 86.745 C 424.748,84.4197 426.155,81.1763 428.48,80.2581 C 430.806,79.3399 434.049,80.747 434.967,83.0723 C 435.885,85.3976 434.478,88.6411 432.153,89.5592 C 429.828,90.4774 426.584,89.0703 425.666,86.745z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 425.666 86.745 C 424.748,84.4197 426.155,81.1763 428.48,80.2581 C 430.806,79.3399 434.049,80.747 434.967,83.0723 C 435.885,85.3976 434.478,88.6411 432.153,89.5592 C 429.828,90.4774 426.584,89.0703 425.666,86.745"/>
+  </g>
+</svg>
