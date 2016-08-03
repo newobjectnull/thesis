@@ -1,3 +1,6 @@
+%@author:Fontana Davide
+%@title:Sviluppo della gestione delle note di credito in un programma di 
+%fatturazione.
 \documentclass[12pt]{book} 
 \usepackage{fullpage} 
 \usepackage{graphicx} 
@@ -12,9 +15,9 @@
 \DeclareCaptionFont{white}{\color{white}}
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
-
 \title{Sviluppo della gestione delle note di credito in un programma di fatturazione}
 \author{Davide Fontana}
+\date{}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -24,12 +27,12 @@ Questa relazione riguarda il tirocinio da me effettuato presso l' azienda
 Consoft Informatica S.r.l tra Febbraio e Aprile 2016 nella sede di Padova.
 Lo stage è cominciato con una prima parte di formazione sulle tecnologie usate 
 all'interno dell'azienda tra cui Java J2EE, SQL, Hibernate e Spring MVC\@.
-In seguito, dopo la formazione, è seguita una parte pratica con la progettazione
-e la successiva implementazione della gestione delle note di credito di un 
-programma di fatturazione online che, attualmente, è ancora in fase di sviluppo
-all' interno dell' azienda.
+In seguito, dopo la formazione, è seguita una parte pratica con attività di 
+bug-fixing e poi la progettazione con successiva implementazione della gestione 
+delle note di credito di un programma di fatturazione online che, attualmente,
+è ancora in fase di sviluppo all' interno dell' azienda. 
 %Azienda ospitante.
-\chapter{Azienda Ospitante}
+\chapter{Azienda ospitante}
 L' azienda in cui è stato svolto il tirocinio è la Consoft Informatica S.r.l
 operante nel settore Information \& Communication Tecnology\@.
 Come riportato sul sito ufficiale~\cite{consoft:descrizione}, l'azienda è una
@@ -44,97 +47,164 @@ sono in grado di rispondere alle esigenze del cliente garantendo affidabilità,
 convenienza ed efficienza.
 Consoft Informatica opera con i suoi oltre 150 dipendenti su tutto il territorio
 nazionale e ha 3 sedi ubicate a Padova, Firenze e infine Roma. 
-\chapter{Tecnologie utilizzate}
-Durante le prime due settimane sono stato inserito all' interno di un corso 
+%Progetto delle note di credito.
+\chapter{Il corso di formazione}
+Durante le prime due settimane sono stato inserito all’ interno di un corso 
 tenuto dalla mia tutor aziendale Giulia Paoli in cui ho potuto apprendere 
-la programmazione Java per web insieme a framework e librerie indispensabili 
-per poter operare su progetti web di grandi dimensioni.
-\section{Java per il Web}
-Il primo passo è stato quello di imparare a creare un applicativo web in Java.
-Questo applicativo doveva chiedere in un form il nome della persona che accedeva
-alla pagina web.
-Appena l' utente scriveva il nome e premeva il bottone \texttt{submit} si veniva
-ridirezionati in un' altra pagina in cui veniva salutato il nuovo utente 
-chiamandolo con il nome precedentemente inserito.
-Un applicativo web in Java si compone di essenzialmente di due parti:
-\begin{itemize}
-    \item front-end: Corrisponde a ciò che vede l' utente essenzialmente pagine
-        web. In questo caso non abbiamo pagine \texttt{.html}
-        bensì pagine \texttt{.jsp} (Java Server Pages) ovvero pagine html che 
-        contengono anche codice scritto in Java.
-        Per inserire codice scritto in Java in una pagina \texttt{jsp} si 
-        usano dei tag specifici ovvero \texttt{<\%  \%>}.
-        Per poter stampare invece una variabile all' interno del codice 
-        \texttt{html} si usa il tag \texttt{<\%= \%>}.
-        Infine il tag \texttt{<\%@ \%>} viene usato per dare delle direttive al server
-        che deve eseguire la pagina \texttt{jsp} oppure ad esempio per importare
-        delle librerie all' interno della pagina.
-        Un esempio lo possiamo vedere nel pezzo di codice sottostante.
-        \lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Esempio di tag JSP]{code/tag_example.jsp}
-    \item back-end: Corrisponde alla parte logica ed è composta da file Java 
-        come in un qualsiasi progetto Java standard.
-\end{itemize}
-La parte front-end di richiesta del nome è piuttosto semplice infatti basta 
-scrivere un form html.
-\lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Form di inserimento dati.]{code/form.jsp}
-dove method indica il tipo di richiesta Http (nel nostro caso la get) mentre
-la action indica dove inviare i dati appena inseriti.
-Per poter ricevere i dati si utilizza una classe Java particolare chiamata
-\texttt{Servlet}.
-La \texttt{Servlet} è una classe Java che estende la classe HttpServlet e implementa 
-dei metodi specifici che servono per intercettare le tipologie di richieste 
-http.
-Il codice sottostante è l' implementazione dell' esercizio.
-\lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Codice della Servlet.]{code/primaServlet.java}
-Come possiamo vedere sopra la dichiarazione della classe abbiamo una notazione
-la quale indica a quale azione del form essa risponde.
-Nel metodo \texttt{doGet} viene fatta attraverso l'oggetto \texttt{response}
-una ridirezione alla pagina.
-Infatti prima attraverso il metodo \texttt{getRequestDispatcher} si richiede
-la risorsa e poi con il metodo \texttt{redirect} si procede al redirect vero
-e proprio sulla risorsa selezionata.
-Notare che in questo caso vengono passati come parametri sia l'oggetto 
-\texttt{request} che \texttt{response} della chiamata precedente.
-Infine quindi abbiamo la pagina \texttt{arrivo.jsp} in cui arriva la 
-ridirezione.
-Qui sotto il codice della pagina.
-\lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Pagina di saluto del nuovo utente]{code/arrivo.jsp}
-Possiamo notare come nella pagina jsp è presente un oggetto chiamato 
-\texttt{request} di tipo \texttt{HttpServletRequest} senza che esso sia stato 
-dichiarato.
-Questo infatti è possibile in quanto per ogni pagina \@.jsp sono definite alcune
-variabili implicite tra cui le variabili \texttt{request} e \texttt{response} 
-esattamente dello stesso tipo della \texttt{Servlet}.
-Per visualizzare il nome della persona inserita utilizziamo il metodo 
-\texttt{getParameter} in cui all' interno deve essere indicato il nome del 
-parametro di cui vogliamo prendere il contenuto.
+due framework indispensabili per la programmazione di software Enterprice
+di grandi dimensioni ovvero Hibernate e Spring.
 \section{Hibernate}
-Successivamente abbiamo imparato ad accedere ad un database tramite Hibernate.
-Hibernate è un framework ORM (Object Relation Mapping) che mappa le tabelle 
-di un database relazionale in oggetti Java.
-Questo framework rispetto ad accedere al database attraverso le normali API 
-di Java offre diversi vantaggi.
+Hibernate è un ORM (o anche object relational mapping) e ha la funzione di 
+mappare le tabelle di un database in oggetti Java.
+Utilizzare questo framework conviene rispetto ad usare le normali API di Java
+per i seguenti motivi:
 \begin{itemize}
-    \item Non bisogna scrivere codice SQL in quanto Hibernate ha delle funzioni
-       specifiche per inserire, modificare e restituire dati. 
-    \item Le colonne restituite da una funzione sono una lista di oggetti 
-        contenitore e quindi possono essere trattati con maggiore semplicità.
-   \item Le funzioni di Hibernate sono trasparenti rispetto al tipo di DBMS 
-       usato. Infatti Hibernate compone automaticamente le query.
+    \item Tutta la gestione della connessione al database viene gestita dal 
+        framework.
+    \item Il reperimento dati viene fatto chiamando funzioni di Hibernate e non
+        più scrivendo query. Questo permette quindi di cambiare database senza
+        dover più preoccuparsi di riscrivere le query nel dialetto SQL del 
+        nuovo DBMS\@.
+    \item Tutto quello che viene restituito dalle funzioni di Hibernate sono
+        oggetti Java che rispecchiano negli attributi la tabella da cui sono
+        stati presi.
 \end{itemize}
-Ovviamente però tutte queste cose non possono essere fatte automaticamente.
-È necessario far sapere ad Hibernate a quale database si deve connettere e 
-a quali sono le tabelle su cui deve mappare il contenuto tutto questo seguendo
-regole ben precise.
-%TODO finire Hibernate con l'esempio
+Tutto questo ovviamente non viene fatto in automatico.
+Serve infatti un file di configurazione che specifica l' uri del database,
+il nome utente, la password e il dialetto sql per il reperimento dati.
+Per la mappatura delle tabelle in oggetti Java bisogna inoltre scrivere delle
+classi Java apposite chiamate Bean e, tramite delle specifiche notazioni Java, 
+indicare per ogni attributo della classe l'attributo della tabella 
+corrispondente.
 \section{Spring}
-%TODO Fare spring con esempio giocattolo
+Spring è il framework su cui è stato costruito il programma di 
+fatturazione.
+Questo framework è molto popolare e serve principalmente per semplificare lo 
+sviluppo di applicazioni Java enterprice dando al programmatore un modello di 
+programmazione e delle API consistenti per scrivere programmi complessi senza 
+incorrere in errori producendo codice di alta qualità.
+Il framework inoltre si integra alla perfezione con la maggior parte degli ORM
+tra cui il famoso Hibernate.
+Il framework è stato creato basandosi sulla \texttt{Dependency Injection}.
+La DI è un design pattern che serve per invertire il controllo nella creazione
+degli oggetti.
+Infatti invece di creare le dipendenze tra le classi utilizzando il costrutto
+\texttt{new} si inietta la risorsa all' interno dell' oggetto destinazione.
+Questo ha i conseguenti vantaggi:
+\begin{itemize}
+    \item Il client non si deve preoccupare delle diverse implementazioni
+    \item È più facile eseguire procedure di Unit Testing e Mocking.
+    \item La configurazione viene esternizzata. Infatti è possibile creare 
+        file xml che contengono le informazioni per la creazione dell' oggetto.
+\end{itemize}
+\subsection{Spring MVC}
+In particolare per la creazione delle pagine web è stata usata un' estensione
+di Spring ovvero Spring MVC\@.
+Il design pattern MVC in Spring è spiegato nell' immagine
+(Si veda~\cite{apress:introducing_spring_framework} per maggiori dettagli).
+\newline
+\newline
+\includegraphics[scale=.5]{img/spring_mvc_structure}
+\newline
+Per prima cosa abbiamo una richiesta web (con o senza parametri) inviata dall' 
+utente la quale viene ridirezionata tramite un Front Controller ad una classe 
+chiamata Controller da noi implementata.
+Infine dopo aver reperito i dati viene data come risposta una pagina web (html 
+o jsp) che fa visualizzare la risposta.
+Un esempio di controller lo possiamo vedere in questo codice di esempio.
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Esempio di controller]{code/controller-example.java}
+Il controller di per se è molto semplice ed è corredato di diverse notazioni.
+\begin{itemize}
+    \item \texttt{@Controller}: Questo marca la classe come controller e quindi
+        il Front Controller sa dove inviare la richiesta.
+    \item \texttt{@RequestMapping}: Questa serve per come accedere al controller.
+        In questo caso \texttt{path/search}. Poi per ogni funzione abbiamo un'
+        ulteriore mappatura in cui è specificato il metodo di richiesta (GET o
+        POST). 
+    \item \texttt{@Autowired}: Serve per iniettare l' implementazione dell' 
+        oggetto \texttt{DocumentDAO}.
+\end{itemize}
+Inoltre l' oggetto model serve per inserire le informazioni reperite dal 
+controller per poter essere visualizzate nella pagina di risposta identificata
+con la stringa presente nel valore di ritorno della funzione.
+Le pagine web di risposta che vengono visualizzate dall' utente sono pagine 
+\texttt{.jsp}. Queste pagine molte volte contengono codice Java ma se sono 
+presenti errori possono essere pericolose in quanto l' intero codice della 
+pagina apparirebbe sullo schermo e la sicurezza dell' applicativo sarebbe così
+compromessa.
+In questo caso quindi si sceglie di utilizzare la libreria \texttt{jstl} (o java
+standard tag library). Che permette di presentare i dati attraverso degli 
+speciali tag come possiamo vedere nella pagina jsp di arrivo del nostro 
+controller.
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Esempio di view con i tag jstl]{code/example-page.jsp}
+Dove \texttt{\(\$\{\dots\}\)} indica il contenuto all' interno dell' attributo
+di nome docs.
+Possiamo notare inoltre due tag che rappresentano i costrutti if e for che di
+solito troviamo in programmazione.
+\chapter{Il Programma di Fatturazione}
+Dopo aver finito di seguire il corso tenuto dalla mia responsabile aziendale
+per prendere confidenza con software di grandi dimensioni ho fatto circa due 
+settimane di attività di bug fixing sul software di fatturazione in sviluppo
+internamente all' azienda.
+Questo applicativo è stato scritto con il framework Spring mentre i dati
+sono presenti sul DBMS MySQL e la loro gestione viene aiutata grazie all' uso
+di Hibernate.
+Per il log delle operazioni è stata usata la libreria Log4j mentre infine per 
+la generazione dei pdf è stata usata la libreria JasperReport.
+\section{Struttura dell' applicativo}
+La struttura in package è organizzata in questo modo:
+\begin{itemize}
+    \item \texttt{it.consoft.fatturazione.controller}: Contiene tutti i 
+        i Spring controller dell' applicativo.
+    \item \texttt{it.consoft.fatturazione.form}: Contiene tutte le classi Java 
+        che servono a Spring per fare la validazione dei dati inviati da un 
+        form. Queste classi hanno delle annotazioni che permettono, appena 
+        il form viene sottomesso, di verificare se tutti i dati che sono inviati
+        al controller corrispondono ai criteri di validazione.
+        Per includere una classe per la validazione serve aggiungere l'attributo
+        modelAttribute con il nome dell' oggetto della classe utilizzata nella
+        validazione.
+    \item \texttt{it.consoft.fatturazione.bean}: Contiene tutti i Bean per 
+        l' utilizzo in Hibernate. Un Bean è una classe Java che ha variabili
+        di istanza private e solo metodi set e get.
+    \item \texttt{it.consoft.fatturazione.utils}: Contiene una serie di classi
+        utility come ad esempio per la formattazione delle date.
+    \item \texttt{it.consoft.fatturazione.dao}: Contiene le classi DAO (Data
+        Access Object). Le classi DAO sono delle classi che implementano 
+        le funzioni di inserimento, modifica e cancellazione dei dati di ogni 
+        tabella presente nel database gestendo inoltre la connessione del
+        database. Tutto questo per fortuna ci viene semplificato grazie 
+        al framework Hibernate e quindi la scrittura del codice all' interno 
+        delle funzioni risulta piuttosto semplice.
+        Le funzioni dei DAO non vengono mai chiamate da tutte le classi ma 
+        solo da classi particolari chiamate \texttt{Service}.
+    \item \texttt{it.consoft.fatturazione.service}: I service sono un' ulteriore
+        astrazione dei DAO\@. 
+        Hanno le stesse funzioni dei DAO più ulteriori metodi che servono per 
+        reperire informazioni maggiormente specifiche.
+        I Service infine sono le uniche classi che vengono chiamate nelle classi
+        Java per interrogare il database e possono chiamare funzioni di altri
+        Service.
+        Questa distinzione tra DAO e Service non è casuale ma è data da un 
+        pattern specifico detto \texttt{Data Access Pattern} come specificato
+        in questo class diagram.
+        \newline
+        \newline
+        \includegraphics[scale=.5]{img/data-access-pattern-class-diagram}
+        \newline
+        Dove la classe Client è il Service. 
+        La sua importanza è data dal fatto che una strutturazione del codice 
+        in questa maniera permette non solo di rendere maggiormente testabile 
+        il software ma astrae ed incapsula tutti gli accessi ai dati.
+\end{itemize}
 \chapter{Progetto delle Note di Credito}
-Successivamente mi è stato chiesto di progettare e implementare la gestione 
-delle note di credito di un programma di fatturazione che attualmente è in
-sviluppo presso Consoft Informatica.
+Dopo aver preso confidenza con la struttura dell' applicativo ho quindi potuto
+prendere l' incarico di progettare e implementare le note di credito.
 \section{Analisi dei Requisiti}
-La nota di credito viene applicata ad una fattura e ha due finalità:
+La prima cosa da fare è stata intervistare la committente di tale progetto 
+ovvero la Sig.na Anna Bellin responsabile amministrativa di Consoft Informatica
+per prendere nota delle specifiche del problema.
+Infatti la nota di credito viene applicata ad una fattura e ha due finalità:
 \begin{enumerate}
     \item Correttiva Parziale: Serve per correggere l’importo di una fattura 
         nel caso in cui sia presente un errore per eccesso dell’ imponibile. 
@@ -207,31 +277,84 @@ Il codice della tabella in SQL è il seguente
 \lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Codice SQL della tabella]{code/tabella.sql}
 Per tutti i campi è stato deciso di renderli tutti non nulli perché alla
 generazione della nota di credito tutti i campi devono essere compilati.
-\chapter{Implementazione}
+\section{Implementazione dell' applicativo.}
 Si è passati poi alla scrittura del codice per integrare la nuova funzionalità
 nell' applicativo.
 Per questa parte sono stato aiutato da due sviluppatori interni all' azienda
 di nome Mauro Veronese della sede di Padova e Rocco Spenza della sede di Roma.
-\section{Lista delle fatture}
-\subsection{Front End}
-Per la parte front-end abbiamo deciso come prima cosa di integrare 
-l' inserimento delle note di credito all' interno dell' interfaccia 
+\subsection{Bean delle note di credito}
+Come prima cosa dopo la creazione del database si è dovuto scrivere il Bean per 
+poter mappare la tabella in Hibernate.
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=22,lastline=64,title=Bean della tabella delle note di credito]{code/bean/NotaDiCredito.java}
+Si è scelto inoltre di indicare tramite le notazioni Java di effettuare un Join
+automatico con la tabella delle fatture essendo che nella maggioranza delle 
+operazioni era necessario avere anche i dati della fattura associata.
+\subsection{Lista delle fatture}
+Successivamente si è passato a modificare la lista di visualizzazione delle 
+fatture fatta precedentemente 
+integrando l' inserimento delle note di credito all' interno dell' interfaccia 
 di inserimento fatture.
 \newline
 \newline
 \includegraphics[scale=0.4]{img/lista_fatture}
 \newline
-I primi due bottoni verdi sono infatti per l' inserimento e la visualizzazione
-della nota di credito.
-\section{Inserimento della nota di credito}
-Dopo aver premuto il tasto 
+Sono stati inseriti i due bottoni verdi \includegraphics[scale=0.4]{img/add} e 
+\includegraphics[scale=0.4]{img/list} i quali sono rispettivamente per l' inserimento e 
+la visualizzazione della nota di credito per ogni fattura.
+\subsection{Inserimento e modifica della nota di credito}
+Si è passato poi alla scrittura dell' interfaccia di inserimento e modifica
+della nota di credito che possiamo vedere nell' immagine sottostante.
+\newline
+\newline
+\includegraphics[scale=0.4]{img/inserimento_nota_credito}
+\newline
+La cui struttura è data dal seguente codice html.
+\lstinputlisting[firstline=100,lastline=172,basicstyle=\ttfamily\scriptsize,title=Codice Html della parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
+Dove \(\texttt{\$\{azione\}}\) indica il tipo di web request che deve essere
+fatta alla sottomissione della form.
+La variabile \texttt{azione} viene determinata attraverso questo codice 
+presente nella pagina jsp.
+\lstinputlisting[firstline=8,lastline=14,basicstyle=\ttfamily\scriptsize,title=Codice per la decisione dell' azione da compiere]{code/view/inserimentoModificaNoteCredito.jsp}
+Questo perché la stessa pagina viene utilizzata sia per la fase di modifica sia
+in quella di inserimento di una nuova nota di credito.
+Il calcolo del totale che verrà detratto in front end viene fatto al momento 
+grazie a codice \texttt{Javascript/jQuery} che esegue i calcoli ogni 
+volta che l'importo o l' iva viene modificato come si può vedere nel 
+codice sottostante.
+\lstinputlisting[firstline=175,lastline=190,basicstyle=\ttfamily\scriptsize,title=Codice javascript per la parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
+Tutti i calcoli però vengono fatti nuovamente tramite Java dentro al controller
+per evitare manomissioni nell' inserimento semplicemente modificando 
+l'\texttt{html}.
+Come prima cosa all' interno della form abbiamo specificato una classe che 
+serve per validare i dati inseriti.
+\lstinputlisting[firstline=16,lastline=33,basicstyle=\ttfamily\scriptsize,title=form di controllo delle note di credito]{code/form/NotaCreditoForm.java}
+Il cui oggetto viene specificato nell' attributo \texttt{modelAttribute} del 
+form.
+\lstinputlisting[firstline=257,lastline=293,basicstyle=\ttfamily\scriptsize,title=parte di reperimento dati e controllo del controller delle note di credito]{code/controller/NotaCreditoController.java}
+Infine, se tutti i controlli vanno a buon fine, avviene la creazione della nota di 
+credito in formato \texttt{pdf} e il caricamento di tutti i dati nel database
+come mostrato nel codice sottostante.
+\clearpage
+\lstinputlisting[firstline=342,lastline=375,basicstyle=\ttfamily\scriptsize,title=generazione del pdf e caricamento di tutti i dati]{code/controller/NotaCreditoController.java}
+\subsection{Lista delle note di credito}
+La lista delle note di credito relativa ad una fattura può essere visualizzata
+in due modi
+\begin{enumerate}
+    \item Attraverso la pressione del tasto
+         nella lista delle fatture.
+    \item Appena finito di compilare e salvare nel database una nota di credito.
+\end{enumerate}
+\subsubsection{Front End}
+Un esempio di lista delle note di credito è la seguente
+\newline
+\newline
+\includegraphics[scale=0.4]{img/visualizzazione_note_credito}
+\newline
 \begin{thebibliography}{9}
     \bibitem{consoft:descrizione} Sito ufficiale Consoft Informatica \newline
     \texttt{http://www.consoftinformatica.it}
-    \bibitem{wikipedia:jsp} Descrizione delle pagine jsp \newline
-    \texttt{https://it.wikipedia.org/wiki/JavaServer\_Pages}
+    \bibitem{apress:introducing_spring_framework}Felipe Gutierrez, 
+    \emph{Introducing Spring Framework: A Primer}, Apress.
+    \newline
 \end{thebibliography}
 \end{document}
-
-
-
