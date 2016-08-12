@@ -10,17 +10,22 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{listings}
-
 \usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref} %for links in the table of contents
+\hypersetup{hidelinks}
+%color of code listings
 \DeclareCaptionFont{white}{\color{white}}
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
 \title{Sviluppo della gestione delle note di credito in un programma di fatturazione}
 \author{Davide Fontana}
 \date{}
 \begin{document}
 \maketitle
 \tableofcontents
+%start of the thesis
 \chapter{Introduzione}
 %Introduzione
 Questa relazione riguarda il tirocinio da me effettuato presso l' azienda 
@@ -103,8 +108,8 @@ Questo ha i conseguenti vantaggi:
 Spring al momento è un framework molto vasto e comprende diverse estensioni.
 Una delle più usate è Spring MVC\@.
 \subsection{Spring MVC}
-Questa estensione è usata per la creazione delle pagine web dove MVC è un design 
-pattern di tipo strutturale e sta per Model View Controller.
+Questa estensione è usata per la creazione delle pagine web dove MVC sta per 
+Model View Controller ed è un design pattern di tipo strutturale.
 Impone di dividere i file all' interno del software in 3 parti con le seguenti 
 funzioni:
 \begin{itemize}
@@ -119,13 +124,15 @@ funzioni:
 \end{itemize}
 Il funzionamento di Spring MVC è spiegato nell' immagine 
 (Si veda~\cite{apress:introducing_spring_framework} per maggiori dettagli).
-\newline
-\includegraphics[scale=.5]{img/spring_mvc_structure}
-\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=.5]{img/spring_mvc_structure}
+    \caption{Schema di funzionamento di Spring MVC}\label{spring:diagram}
+\end{figure}
 Per prima cosa abbiamo una richiesta web inviata dall' utente la quale viene 
 ridirezionata tramite un Front Controller ad una classe chiamata Controller da 
 noi implementata.
-Infine dopo aver effettuato le operazioni richieste viene data come risposta 
+Infine, dopo aver effettuato le operazioni richieste, viene data come risposta 
 una pagina web (html o jsp).
 Un esempio di controller lo possiamo vedere in questo codice di esempio.
 \lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Esempio di controller]{code/controller-example.java}
@@ -155,7 +162,7 @@ standard tag library). Che permette di presentare i dati attraverso degli
 speciali tag.
 Per poterli inserire bisogna prima di tutto importarli nel codice della
 pagina jsp con la seguente stringa 
-\lstinputlisting[firstline=2,lastline=2,basicstyle=\ttfamily\scriptsize,title=Stringa per importare i tag jstl nelle pagine jstl]{code/view/visualizzaTutte.jsp}
+\lstinputlisting[firstline=2,lastline=2,basicstyle=\ttfamily\scriptsize, title=Stringa per importare i tag jstl nelle pagine jstl]{code/view/visualizzaTutte.jsp}
 Dove l' attributo prefix serve per distinguere lo schema dei tag da quelli 
 standard dell' html.
 Alcune delle cose che è possibile fare con le jstl sono:
@@ -203,37 +210,35 @@ La struttura in package è organizzata in questo modo:
         tabella del database gestendone inoltre la connessione. 
         Tutto questo viene semplificato grazie al framework Hibernate e quindi 
         il codice da scrivere risulta contenuto.
-        Le funzioni dei DAO vengono chiamate da classi chiamate 
+        Le funzioni di queste classi vengono chiamate da classi chiamate 
         \texttt{Service}.
-    \item \texttt{it.consoft.fatturazione.service}: I service sono un' ulteriore
-        astrazione dei DAO\@. 
-        Hanno le stesse funzioni dei DAO più ulteriori metodi che servono per 
-        reperire informazioni maggiormente specifiche.
-        I Service infine sono le uniche classi che vengono chiamate per 
+    \item \texttt{it.consoft.fatturazione.service}:         
+        Hanno le stesse funzioni dei DAO più metodi che servono per 
+        reperire informazioni specifiche.
+        Sono le uniche classi che vengono chiamate per 
         interrogare il database e possono chiamare funzioni di altri
         Service.
         Questa distinzione tra DAO e Service è stata fatta seguendo un 
-        pattern specifico detto \texttt{Data Access Pattern} come specificato
+        design pattern che si chiama \texttt{Data Access Pattern} visibile in  
         in questo class diagram.
-        \newline
-        \newline
-        \includegraphics[scale=.5]{img/data-access-pattern-class-diagram}
-        \newline
-        %TODO essere più specifici.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=.5]{img/data-access-pattern-class-diagram}
+            \caption{Class diagram del data access pattern}\label{pattern:dao}
+        \end{figure}
         Dove la classe Client è il Service. 
-        La sua importanza è data dal fatto che una strutturazione del codice 
-        in questa maniera permette non solo di rendere maggiormente testabile 
-        il software, rendendo possibile la simulazione degli oggetti, ma astrae 
-        ed incapsula tutti gli accessi ai dati.
+        La sua importanza è data dal fatto che permette  
+        di astrarre e incapsulare tutti gli accessi ai dati oltre a rendere
+        le funzioni di testing e moking più facili.
 \end{itemize}
 \chapter{Progetto delle Note di Credito}
 Dopo aver preso confidenza con la struttura dell' applicativo ho quindi potuto
 prendere l' incarico di progettare e implementare le note di credito.
 \section{Analisi dei Requisiti}
-La prima cosa da fare è stata intervistare la committente di tale progetto 
-ovvero la Sig.na Anna Bellin responsabile amministrativa di Consoft Informatica
-per prendere nota delle specifiche del problema.
-Infatti la nota di credito viene applicata ad una fattura e ha due finalità:
+La prima cosa da fare è stata intervistare la committente del progetto 
+ovvero la Sig.na Anna Bellin responsabile amministrativa di Consoft Informatica.
+Dall' intervista ho capito che la nota di credito viene applicata ad una fattura 
+e ha due finalità:
 \begin{enumerate}
     \item Correttiva Parziale: Serve per correggere l’importo di una fattura 
         nel caso in cui sia presente un errore per eccesso dell’ imponibile. 
@@ -246,19 +251,20 @@ Infatti la nota di credito viene applicata ad una fattura e ha due finalità:
 \end{enumerate}
 Ogni nota di credito è relativa ad un’ unica fattura ma una fattura può avere 
 più note di credito.
-E’ composta dalle informazioni della azienda e il numero della fattura a cui 
+È composta dalle informazioni dell' azienda e il numero della fattura a cui 
 questa nota di credito fa riferimento.
 Il numero della fattura è incrementale solo rispetto all’ anno in corso e non 
 alla fattura in cui la nota di credito è presente.
-La grafica deve essere in linea con quella attuale e deve consentire per ogni 
+Lo stile per la parte applicativa deve rispecchiare quello attuale del programma
+e deve consentire per ogni 
 fattura (scaduta e non) di aggiungere note di credito e poter vedere, 
 modificare, cancellare e stampare i report di quelle attualmente associate.
-La visualizzazione delle note di credito deve essere per data partendo dalla 
+La visualizzazione delle note deve essere per data partendo dalla 
 più recente facendo in modo che solo l’ultima nota credito sia 
 modificabile/cancellabile mentre le altre devono avere solo la possibilità di 
 essere visualizzate/stampate.
 Nel caso in cui l’ ultima nota di credito venisse cancellata bisogna rendere 
-disponibile la modifica di quella che c’era precedentemente.
+disponibile la cancellazione di quella che c’era precedentemente.
 Infine l’imponibile nella lista delle fatture bisogna che sia compreso delle 
 detrazioni rendendo poi impossibile la modifica della fattura stessa essendo 
 che quindi la fattura è già stata emessa.
@@ -268,11 +274,13 @@ dati per salvare le informazioni.
 Qui sotto sono descritte tutte le fasi di progettazione.
 \subsection{Schema Concettuale}
 Essendo che le note di credito erano relative alle fatture si è deciso di 
-creare una sola entità come mostrato nello schema sottostante.
-\newline
-\newline
-\includegraphics[scale=0.5]{img/schema_concettuale}
-\newline
+creare una sola entità associata a quella della fatture come mostrato nello 
+schema sottostante.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/schema_concettuale}
+    \caption{Schema concettuale}\label{schema:concettuale}
+\end{figure}
 Sono state attuate le seguenti scelte sugli attributi:
 \begin{enumerate}
     \item L' attributo \texttt{totale\_rimanente} anche se attributo 
@@ -287,18 +295,19 @@ Sono state attuate le seguenti scelte sugli attributi:
         con l'attributo \texttt{id} che è chiave dell' entità fattura.
     \item Abbiamo due attributi, \texttt{nome\_report} e 
         \texttt{contenuto\_report}, che contegono il nome e il contenuto 
-        del file \texttt{.pdf} della nota di credito appena generata.
-    \item Sono stati inseriti inoltre solo l’importo e l’ IVA calcolata in 
+        del file \texttt{.pdf} della nota di credito generata.
+    \item Sono stati inseriti solo l’importo e l’ IVA calcolata in 
         quanto la percentuale dell’ IVA utilizzata e l’importo totale della 
-        nota di credito possono essere ricavate dagli attributi importo e 
-        IVA calcolata.
+        nota di credito possono essere ricavate dagli attributi \texttt{importo}
+        e \texttt{iva\_calcolata}.
 \end{enumerate}
 \subsection{Schema Logico}
 Si è quindi passato poi allo schema logico ricavato da quello concettuale.
-\newline
-\newline
-\includegraphics[scale=0.5]{img/schema_logico}
-\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/schema_logico}
+    \caption{Schema Logico}\label{schema:logico}
+\end{figure}
 Come numero di cifre intere è stato scelto undici per rimanere in linea con il
 numero di cifre dell' id della tabella \texttt{fattura}
 \subsection{Codice SQL}
@@ -323,33 +332,34 @@ Successivamente si è passato a modificare la lista di visualizzazione delle
 fatture fatta precedentemente 
 integrando l' inserimento delle note di credito all' interno dell' interfaccia 
 di inserimento fatture.
-\newline
-\newline
-\includegraphics[scale=0.4]{img/lista_fatture}
-\newline
-Sono stati inseriti i due bottoni verdi \includegraphics[scale=0.4]{img/add} e 
-\includegraphics[scale=0.4]{img/list} i quali sono rispettivamente per l' inserimento e 
-la visualizzazione della nota di credito per ogni fattura.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/lista_fatture}
+    \caption{Lista delle fatture}\label{img:lista_fatture}
+\end{figure}
+Sono stati inseriti i due bottoni \includegraphics[scale=0.4]{img/add} e 
+\includegraphics[scale=0.4]{img/list} i quali sono rispettivamente per 
+l' inserimento e la visualizzazione della nota di credito per ogni fattura.
 \subsection{Inserimento e modifica della nota di credito}
 In seguito abbiamo cominciato a costruire l' interfaccia per l' inserimento 
 e la modifica di una nota di credito.
 Si è reso indispensabile per una interfaccia coerente con entrambe le operazioni
 di utilizzare una sola pagina web.
-Per determinare il tipo di pagina si è deciso di verificare dentro alla pagina
-jsp, attraverso il valore di un attributo dentro alla web request, per poter poi 
-inviare la form alla funzione del controller più adatta.
+Per determinare la tipologia di richiesta si è dovuto fare un confronto 
+con il valore presente nell' attributo \texttt{variabile}.
 \lstinputlisting[firstline=8,lastline=14,basicstyle=\ttfamily\scriptsize,title=Codice per la decisione dell' azione da compiere]{code/view/inserimentoModificaNoteCredito.jsp}
 La pagina web di inserimento finita si presenta così.
-\newline
-\newline
-\includegraphics[scale=0.4]{img/inserimento_nota_credito}
-\newline
-La cui struttura è data dal seguente codice html.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/inserimento_nota_credito}
+    \caption{Inserimento e modifica di una nota di credito}\label{fig:insert}
+\end{figure}
+La cui struttura è data dal seguente codice jsp.
 \lstinputlisting[firstline=100,lastline=172,basicstyle=\ttfamily\scriptsize,title=Codice Html della parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
 Dove \(\texttt{\$\{azione\}}\) indica il tipo di web request che deve essere
 fatta alla sottomissione della form che viene determinata attraverso il 
-codice visto precedentemente.
-Il calcolo del totale che verrà detratto viene fatto 
+codice di decisione visto precedentemente.
+Il calcolo del totale, per la parte di front-end, viene fatto 
 con codice \texttt{Javascript/jQuery} che esegue i calcoli ogni 
 volta che l'importo o l' iva viene modificato come si può vedere qui sotto.
 \lstinputlisting[firstline=175,lastline=190,basicstyle=\ttfamily\scriptsize,title=Codice javascript per la parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
@@ -357,26 +367,26 @@ volta che l'importo o l' iva viene modificato come si può vedere qui sotto.
 Prima dell' inserimento dei dati nel database tutti i calcoli però vengono 
 fatti anche in Java dentro al controller per evitare manomissioni 
 nell' inserimento semplicemente modificando l'\texttt{html}.
-Inoltre per si utilizza una funzione di Spring per la validazione dei dati.
+Inoltre si utilizza una funzione di Spring per la validazione dei dati.
 Consiste nell' associare al form di inserimento un oggetto di una classe simile
 ad un Bean con delle notazioni Java che verificano se i parametri inviati 
 corrispondono al dominio richiesto. La classe è stata chiamata 
 \texttt{NotaCreditoForm} e la sua implementazione è qui sotto.
 \lstinputlisting[firstline=16,lastline=33,basicstyle=\ttfamily\scriptsize,title=form di controllo delle note di credito]{code/form/NotaCreditoForm.java}
 Per poter procedere alla vera e propria validazione bisogna, all'interno della
-funzione del controller che riceve i dati, specificare all' interno dei 
+funzione del controller, specificare all' interno dei 
 parametri il nome dell' oggetto da validare e un oggetto di tipo 
-\texttt{BindingResult} già implementato Spring e che procede materialmente alla
-validazione tramite il metodo booleano \texttt{hasErrors}.
-Nel caso in cui la validazione presenti degli errori verranno caricati 
-nell' oggetto model i messaggi di errore all' interno delle notazioni nella 
-classe di validazione e che verranno automaticamente visualizzati dentro ai
-tag \texttt{form:errors} per ogni attributo in cui è stato trovato un errore.
+\texttt{BindingResult}, già implementato in Spring, che procede materialmente 
+alla validazione tramite il metodo booleano \texttt{hasErrors}.
+Nel caso in cui la validazione presenti degli errori i messaggi di errore 
+all' interno delle notazioni nella classe di validazione verranno inseriti 
+nell' oggetto \texttt{model} e verranno automaticamente visualizzati dentro 
+ai tag \texttt{form:errors} per ogni attributo in cui è stato trovato l' errore.
 La fase di controlli è scritta in questo listato di codice.
-\lstinputlisting[firstline=257,lastline=293,basicstyle=\ttfamily\scriptsize,title=parte di reperimento dati e controllo del controller delle note di credito]{code/controller/NotaCreditoController.java}
+\lstinputlisting[firstline=255,lastline=285,breaklines=True,basicstyle=\ttfamily\scriptsize,title=parte di reperimento dati e controllo del controller delle note di credito]{code/controller/NotaCreditoController.java}
 Infine, se tutti i controlli vanno a buon fine, avviene la creazione della nota di 
 credito in formato \texttt{pdf} e il caricamento di tutti i dati nel database.
-\lstinputlisting[firstline=342,lastline=375,basicstyle=\ttfamily\scriptsize,title=generazione del pdf e caricamento di tutti i dati]{code/controller/NotaCreditoController.java}
+\lstinputlisting[firstline=332,lastline=344,breaklines=True,basicstyle=\ttfamily\scriptsize,title=generazione del pdf e caricamento di tutti i dati]{code/controller/NotaCreditoController.java}
 \subsubsection{Modifica}
 Per la parte di modifica è necessario prima di tutto caricare i dati esistenti
 dato l'id della nota di credito da modificare.
