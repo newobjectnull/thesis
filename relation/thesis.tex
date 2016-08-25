@@ -325,8 +325,8 @@ Come prima cosa dopo la creazione del database si è dovuto scrivere il Bean per
 poter mappare la tabella in Hibernate.
 \lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=22,lastline=64,title=Bean della tabella delle note di credito]{code/bean/NotaDiCredito.java}
 Si è scelto inoltre di indicare tramite le notazioni Java di effettuare un Join
-automatico con la tabella delle fatture essendo che nella maggioranza delle 
-operazioni era necessario avere anche i dati della fattura associata.
+automatico con la tabella delle fatture essendo che, nella maggioranza delle 
+operazioni, era necessario avere anche i dati della fattura associata.
 \subsection{Lista delle fatture}
 Successivamente si è passato a modificare la lista di visualizzazione delle 
 fatture fatta precedentemente 
@@ -393,7 +393,7 @@ dato l'id della nota di credito da modificare.
 \lstinputlisting[firstline=192,lastline=214,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Codice per il caricamento dei dati della nota di credito]{code/controller/NotaCreditoController.java}
 Il caricamento dei dati viene fatto utilizzando la classe 
 \texttt{NotaCreditoForm} usata nella fase di inserimento per la validazione.
-Poi dopo aver effettuato le modifiche si usa la stessa procedura che abbiamo
+Poi, dopo aver effettuato le modifiche, si usa la stessa procedura che abbiamo
 visto nella fase di inserimento della nuova nota di credito.
 \subsection{Lista delle note di credito}
 Dopo l' inserimento e la modifica si è poi passati a scrivere la pagina jsp
@@ -406,30 +406,34 @@ in due modi:
     \item Appena finito di compilare e salvare nel database una nota di credito.
 \end{enumerate}
 Un esempio di lista delle note di credito è la seguente immagine
-\newline
-\newline
-\includegraphics[scale=0.4]{img/visualizzazione_note_credito}
-\newline
+\clearpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/visualizzazione_note_credito}
+    \caption{Esempio di pagina di visualizzazione di una nota di credito}\label{fig:visualizzazione}
+\end{figure}
 che viene generata dalla seguente parte di codice della pagina \texttt{visualizzeTutte.jsp}
 La modifica e/o la cancellazione delle note di credito viene verificata 
 grazie all' attributo modificabile e cancellabile che rappresenta l' id della
-nota di credito al quale è associata tale azione.\lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=53,lastline=88,breaklines=True,title=Parte front end per la visualizzazione delle note di credito]{code/view/visualizzaTutte.jsp}
+nota di credito al quale è associata tale azione.
+\lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=53,lastline=88,breaklines=True,title=Parte front end per la visualizzazione delle note di credito]{code/view/visualizzaTutte.jsp}
 La parte del controller è piuttosto semplice infatti, dato l'id della fattura,
 vengono ritornate tutte le sue note di credito compresi gli id della nota di 
 credito che può essere modificata e/o cancellata.
-\lstinputlisting[firstline=114,lastline=139,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Funzione del controller per ritornare la lista delle note di credito.]{code/controller/NotaCreditoController.java}
+\lstinputlisting[firstline=90,lastline=112,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Funzione del controller per ritornare la lista delle note di credito.]{code/controller/NotaCreditoController.java}
 \subsection{Eliminazione della nota di credito}
 Dopodiché si è passati alla funzione di eliminazione della nota di credito.
 Per l'eliminazione nel controller, dopo aver premuto il tasto di cancellazione, 
 si cancella dal database la nota selezionata e viene
 visualizzata nuovamente la lista delle rimanenti note di credito.
-%TODO insert code
+\lstinputlisting[firstline=114,lastline=139,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Codice per la cancellazione di una nota di credito.]{code/controller/NotaCreditoController.java}
 Nel caso in cui non ci siano note da mostrare la pagina avrà il seguente 
 messaggio per comunicare che non ci sono note credito presenti.
-\newline
-\newline
-\includegraphics[scale=0.4]{img/eliminazione_nota_credito}
-\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/eliminazione_nota_credito}
+    \caption{Eliminazione di una nota di credito}\label{fig:eliminazione}
+\end{figure}
 \subsection{Visualizzazione del pdf della nota di credito}
 Infine per la visualizzazione della nota di credito viene generata, nel 
 caso di un report non nullo, una response http di un documento in pdf
@@ -437,25 +441,41 @@ settando nell' header di risposta il tipo di documento (in questo caso pdf),
 il nome del file ed infine il contenuto del file che viene inviato utilizzando
 la classe \texttt{OutputStream} per poter inviare i byte del file attraverso 
 lo stream di risposta.
-%TODO insert code
+\lstinputlisting[firstline=535,lastline=571,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Codice per la cancellazione di una nota di credito.]{code/controller/NotaCreditoController.java}
 Un esempio di nota di credito generate lo possiamo vedere nell' immagine 
 qui sotto.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{pdf/nota}
+    \caption{Esempio di nota di credito}\label{fig:nota}
+\end{figure}
+\clearpage
 \chapter{Conclusione del lavoro e commenti finali}
 Terminato lo sviluppo e dopo aver testato tutto nell' ambiente di prova tutto 
 il lavoro svolto è stato caricato sul server di produzione senza la presenza
-di problemi in fase di post produzione.
-Durante tutto il lavoro io e gli altri due sviluppatori abbiamo collaborato 
+di problemi.
+Durante tutto il lavoro io, Mauro e Rocco abbiamo collaborato 
 attivamente tra di noi e con la nostra responsabile di progetto che, anche
-se non era presente fisicamente per motivi di lavoro, è stata sempre presente
-da remoto e ha sempre risposto ai nostri dubbi.
+se non era presente fisicamente per motivi di lavoro, è stata sempre in contatto 
+da remoto rispondendo nostri dubbi e aiutandoci nei momenti di difficoltà.
 Tutto il tirocinio si è svolto senza problemi e le persone con cui ho avuto 
 il piacere di collaborare durante il mio periodo in azienda sono stati sempre
 cordiali e disponibili in ogni situazione.
+L' esperienza del tirocinio per me è risultata estremamente formativa perché
+mi ha permesso di imparare nuove tecnologie e predere confidenza con le 
+dimaniche aziendali.
 \begin{thebibliography}{9}
-    \bibitem{consoft:descrizione} Sito ufficiale Consoft Informatica \newline
+    \bibitem{consoft:descrizione} Sito ufficiale Consoft Informatica 
+    \newline
     \texttt{http://www.consoftinformatica.it}
     \bibitem{apress:introducing_spring_framework}Felipe Gutierrez, 
     \emph{Introducing Spring Framework: A Primer}, Apress.
+    \newline
+    \bibitem{wrox:professional_design_patterns}Murat Yener, Alex Theedom,
+    \emph{Professional Java EE Design Patterns}, Wrox
+    \newline
+    \bibitem{manning:spring_in_action}Craig Walls,
+    \emph{Spring in Action Fourth Edition }, Manning
     \newline
 \end{thebibliography}
 \end{document}
