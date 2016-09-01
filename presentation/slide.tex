@@ -1,3 +1,4 @@
+%Presentation of my thesis
 \documentclass[]{beamer}
 \usepackage{pgfpages}
 \usepackage[utf8]{inputenc}
@@ -10,13 +11,9 @@
 \usepackage{float}
 \usepackage{hyperref} %for links in the table of contents
 \hypersetup{hidelinks}
-%color of code listings
-\DeclareCaptionFont{white}{\color{white}}
-\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
 %theme of slides
 \usetheme{CambridgeUS}
-%
+
 \pgfdeclareimage[height=1cm]{logoUnipd}{img/unipd}
 \pgfdeclareimage[height=2cm]{logoDei}{img/dei}
 \logo{\pgfuseimage{logoUnipd}}
@@ -94,7 +91,7 @@ programma di fatturazione}
 
     \begin{frame}
        \frametitle{Esempio Spring MVC\@: Controller}
-       \lstinputlisting[basicstyle=\tiny]{code/controller-example.java}
+       \lstinputlisting[basicstyle=\ttfamily\tiny]{code/controller-example.java}
     \end{frame}
 
     \begin{frame}
@@ -176,6 +173,130 @@ programma di fatturazione}
         \begin{center}
             \Huge Implementazione 
         \end{center}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Bean delle note di credito}
+        \lstinputlisting[basicstyle=\tiny,firstline=22,lastline=50]{code/bean/NotaDiCredito.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Lista delle fatture}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.25]{img/lista_fatture}\label{img:lista_fatture}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Inserimento e modifica delle note di credito}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.25]{img/inserimento_nota_credito}\label{fig:insert}
+        \end{figure}
+    \end{frame}
+
+
+    \begin{frame}
+        \frametitle{Pagina jsp (1)}
+        \lstinputlisting[firstline=100,lastline=130,basicstyle=\ttfamily\tiny]{code/view/inserimentoModificaNoteCredito.jsp}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Pagina jsp (2)}
+        \lstinputlisting[firstline=130,lastline=158,basicstyle=\ttfamily\tiny]{code/view/inserimentoModificaNoteCredito.jsp}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Pagina jsp (3)}
+        \lstinputlisting[firstline=159,lastline=172,basicstyle=\ttfamily\tiny]{code/view/inserimentoModificaNoteCredito.jsp}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Codice javascript front-end}
+        \lstinputlisting[firstline=175,lastline=190,basicstyle=\ttfamily\tiny]{code/view/inserimentoModificaNoteCredito.jsp}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Form di validazione}
+        \lstinputlisting[firstline=16,lastline=33,basicstyle=\ttfamily\tiny]{code/form/NotaCreditoForm.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: Controllo dei dati inseriti}
+        \lstinputlisting[firstline=269,lastline=285,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: Salvataggio dei dati e generazione del pdf}
+        \lstinputlisting[firstline=332,lastline=344,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: Caricamento dati nella fase di modifica}
+        \lstinputlisting[firstline=192,lastline=214,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Lista delle note di credito}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.25]{img/visualizzazione_note_credito}\label{fig:visualizzazione}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: ritorno della lista}
+        \lstinputlisting[firstline=90,lastline=112,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Eliminazione della nota di credito.}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.25]{img/eliminazione_nota_credito}\label{fig:eliminazione}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: fase di eliminazione}
+        \lstinputlisting[firstline=114,lastline=139,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Controller: Visualizzazione del pdf}
+        \lstinputlisting[firstline=535,lastline=550,breaklines=True,basicstyle=\ttfamily\tiny]{code/controller/NotaCreditoController.java}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Risultato finale}
+        \begin{figure}[H]
+            \includegraphics[scale=0.25]{pdf/nota}\label{fig:nota}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}
+        \begin{center}          
+            \huge Conclusioni
+        \end{center}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Bibliografia}
+        \begin{thebibliography}{9}
+            \bibitem{consoft:descrizione} Sito ufficiale Consoft Informatica 
+            \newline
+            \texttt{http://www.consoftinformatica.it}
+            \bibitem{apress:introducing_spring_framework}Felipe Gutierrez, 
+            \emph{Introducing Spring Framework: A Primer}, Apress.
+            \newline
+            \bibitem{wrox:professional_design_patterns}Murat Yener, Alex Theedom,
+            \emph{Professional Java EE Design Patterns}, Wrox
+            \newline
+            \bibitem{manning:spring_in_action}Craig Walls,
+            \emph{Spring in Action Fourth Edition }, Manning
+            \newline
+        \end{thebibliography}
     \end{frame}
 
 \end{document}
