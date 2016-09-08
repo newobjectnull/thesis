@@ -30,15 +30,6 @@ programma di fatturazione}
     \frame{\titlepage}
 
     \begin{frame}
-        \frametitle{Attività svolte}
-        \begin{enumerate}
-            \item Corso di formazione.
-            \item Attività di bug-fixing.
-            \item Programma per la gestione delle note di credito.
-        \end{enumerate}
-    \end{frame}
-
-    \begin{frame}
         \frametitle{Azienda Ospitante}
         \begin{figure}[H]
             \centering
@@ -47,100 +38,36 @@ programma di fatturazione}
     \end{frame}
 
     \begin{frame}
-        \begin{center}
-            \Huge Corso di formazione.
-        \end{center}
-    \end{frame}
-
-    \begin{frame}
         \frametitle{Tecnologie imparate}
         \begin{itemize}
             \item Hibernate
+                \newline
+                Vantaggi:
+                \begin{itemize}
+                    \item Tutta la gestione della connessione al database viene 
+                        gestita dal framework.
+                    \item Il reperimento dati viene fatto chiamando funzioni di 
+                        Hibernate e non più scrivendo query. 
+                    \item Tutto quello che viene restituito dalle funzioni di 
+                        Hibernate sono oggetti Java.
+                \end{itemize}
             \item Spring
+                \newline
+                Vantaggi:
+                \begin{itemize}
+                    \item Semplificazione sviluppo di applicativi web in Java.
+                    \item Presenza di numerose estensioni.
+                \end{itemize}
         \end{itemize}
     \end{frame}
 
     \begin{frame}
-        \frametitle{Hibernate}
-        Vantaggi:
-        \begin{itemize}
-            \item Tutta la gestione della connessione al database viene gestita 
-                dal framework.
-            \item Il reperimento dati viene fatto chiamando funzioni di Hibernate e 
-                non più scrivendo query. 
-            \item Tutto quello che viene restituito dalle funzioni di Hibernate sono
-                oggetti Java.
-        \end{itemize}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Spring}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.2]{img/spring_logo}\label{spring:logo}
-        \end{figure}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Spring MVC}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.3]{img/spring_mvc_structure}\label{spring:diagram}
-        \end{figure}
-    \end{frame}
-
-    \begin{frame}
-       \frametitle{Esempio Spring MVC\@: Controller}
-       \lstinputlisting[basicstyle=\ttfamily\tiny]{code/controller-example.java}
-    \end{frame}
-
-    \begin{frame}
-       \frametitle{Esempio Spring MVC\@: View}
-       \lstinputlisting[basicstyle=\tiny, firstline=16, lastline=37]{code/example-page.jsp}
-    \end{frame}
-
-    \begin{frame}
-       \frametitle{Esempio Spring MVC\@: Pagina finale}
-       \begin{figure}[H]
-           \centering
-           \includegraphics[scale=0.3]{img/spring_view_result}\label{spring:final_view}
-       \end{figure}
-    \end{frame}
-
-    \begin{frame}
-        \begin{center}
-            \Huge Il programma di fatturazione.
-        \end{center}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Lista dei package}
-        \begin{itemize}
-        \item \texttt{it.consoft.fatturazione.controller}
-        \item \texttt{it.consoft.fatturazione.form}    
-        \item \texttt{it.consoft.fatturazione.bean}
-        \item \texttt{it.consoft.fatturazione.utils}
-        \item \texttt{it.consoft.fatturazione.dao}
-        \item \texttt{it.consoft.fatturazione.service}
-        \end{itemize}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Data Access Object Pattern}
-        \begin{figure}[H]
-             \centering
-             \includegraphics[scale=.4]{img/data-access-pattern-class-diagram}\label{pattern:dao}
-         \end{figure}
-    \end{frame}
-
-    \begin{frame}
-        \begin{center}
-            \Huge Progetto delle note di credito    
-        \end{center}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Analisi dei requisiti}
+        \frametitle{Progetto Note di Credito}
+        \begin{LARGE}
+            Analisi dei requisiti 
+        \end{LARGE}
+        \newline
+        \newline
         Utilizzo della nota di credito:
         \begin{itemize}
             \item Correttiva parziale.
@@ -297,6 +224,21 @@ programma di fatturazione}
             \emph{Spring in Action Fourth Edition }, Manning
             \newline
         \end{thebibliography}
+    \end{frame}
+
+    \begin{frame}
+        \begin{center}
+            \huge Slide di approfondimento. 
+        \end{center}
+    \end{frame}
+
+
+    \begin{frame}
+        \frametitle{Spring MVC}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.3]{img/spring_mvc_structure}\label{spring:diagram}
+        \end{figure}
     \end{frame}
 
 \end{document}
