@@ -76,7 +76,7 @@ per i seguenti motivi:
 \end{itemize}
 Tutto questo ovviamente non viene fatto in automatico.
 Serve infatti un file di configurazione che specifica l' uri del database,
-il nome utente, la password e il dialetto sql per il reperimento dati.
+il nome utente, la password e il dialetto SQL per il reperimento dati.
 Per la mappatura delle tabelle in oggetti bisogna scrivere delle
 classi Java chiamate Bean con delle specifiche notazioni 
 che indicano, per ogni variabile d' istanza della classe, l'attributo della 
@@ -87,7 +87,7 @@ e get.
 Spring è il framework su cui è stato costruito il programma di 
 fatturazione.
 Questo framework è molto popolare e serve principalmente per semplificare lo 
-sviluppo di applicazioni java dando al programmatore un modello di 
+sviluppo di applicazioni Java dando al programmatore un modello di 
 programmazione e delle API consistenti per scrivere programmi complessi senza 
 incorrere in errori producendo codice di alta qualità.
 Il framework inoltre si integra alla perfezione con la maggior parte degli ORM
@@ -134,14 +134,14 @@ ridirezionata tramite un Front Controller ad una classe chiamata Controller da
 noi implementata.
 Infine, dopo aver effettuato le operazioni richieste, viene data come risposta 
 una pagina web (html o jsp).
-Un esempio di controller lo possiamo vedere in questo codice di esempio.
+Un esempio di controller lo possiamo vedere in questo listato di codice.
 \lstinputlisting[basicstyle=\ttfamily\scriptsize,title=Esempio di controller]{code/controller-example.java}
 Il controller è molto semplice ed è corredato di diverse notazioni.
 \begin{itemize}
     \item \texttt{@Controller}: Questo marca la classe come controller e quindi
         il Front Controller sa dove inviare la richiesta.
     \item \texttt{@RequestMapping}: Questa serve per come accedere al controller.
-        In questo caso tutte le richieste all' url\texttt{<sito web>/search}
+        In questo caso tutte le richieste all' url \texttt{<sito web>/search}
         verranno indirizzate a questa classe.
         Ogni funzione ha un' ulteriore notazione e serve per specificare quale
         funzione verrà chiamata in base all' url richiesto.
@@ -153,23 +153,22 @@ Il controller è molto semplice ed è corredato di diverse notazioni.
         \texttt{setDocumentDAO}\@.
 \end{itemize}
 Le pagine web di risposta che vengono visualizzate dall' utente sono pagine 
-\texttt{.jsp}. Queste pagine molte volte contengono codice java ma se sono 
-presenti errori possono essere pericolose in quanto l' intero codice della 
-pagina apparirebbe sullo schermo e la sicurezza dell' applicativo sarebbe così
-compromessa.
-In questo caso quindi si sceglie di utilizzare la libreria \texttt{jstl} (o java
+\texttt{.jsp}. Queste pagine possono contenere codice Java ma, se sono 
+presenti errori, possono essere pericolose in quanto tutto il codice della 
+pagina apparirebbe sullo schermo del browser e la sicurezza di tutto l' applicativo 
+sarebbe compromessa.
+In questo caso quindi si sceglie di utilizzare la libreria \texttt{jstl} (o Java
 standard tag library). Che permette di presentare i dati attraverso degli 
 speciali tag.
 Per poterli inserire bisogna prima di tutto importarli nel codice della
 pagina jsp con la seguente stringa 
 \lstinputlisting[firstline=2,lastline=2,basicstyle=\ttfamily\scriptsize, title=Stringa per importare i tag jstl nelle pagine jstl]{code/view/visualizzaTutte.jsp}
-Dove l' attributo prefix serve per distinguere lo schema dei tag da quelli 
+Dove l' attributo \texttt{prefix} serve per distinguere lo schema dei tag da quelli 
 standard dell' html.
 Alcune delle cose che è possibile fare con le jstl sono:
 \begin{itemize}
-    \item verificare delle condizioni sui dati tramite dei tag che ricordano 
-        gli if 
-    \item stampare una lista di oggetti tramite cicli for 
+    \item verificare le condizioni sui dati.
+    \item stampare una lista di oggetti. 
 \end{itemize}
 Un esempio di utilizzo possiamo vederlo nella pagina di visualizzazione 
 in cui vengono mostrati i risultati passati dal controller visto in precedenza.
@@ -177,9 +176,9 @@ in cui vengono mostrati i risultati passati dal controller visto in precedenza.
 Dove \texttt{\(\$\{\dots\}\)} indica il contenuto all' interno dell' attributo
 di nome docs.
 \chapter{Il Programma di Fatturazione}
-Dopo il periodo di formazione mi è stata assegnata un' attività di bugfixing 
+Dopo il periodo di formazione mi è stata assegnata un' attività di bug fixing 
 su un programma di fatturazione online.
-Il programma è stato scritto in java e utilizza diversi componenti:
+Il programma è stato scritto in Java e utilizza diversi componenti:
 \begin{itemize}
     \item Il framework Spring MVC per la parte web.
     \item Il framework Hibernate per interfacciarsi al database.
@@ -201,7 +200,7 @@ La struttura in package è organizzata in questo modo:
     \item \texttt{it.consoft.fatturazione.bean}: Contiene tutti i Bean per 
         l' utilizzo in Hibernate.     
     \item \texttt{it.consoft.fatturazione.utils}: Contiene una serie di classi
-        utility come ad esempio per la formattazione delle date.
+        utility come ad esempio quella per la formattazione delle date.
     \item \texttt{it.consoft.fatturazione.dao}: Contiene le classi DAO (Data
         Access Object). Le classi DAO sono delle classi che implementano 
         le funzioni di creazione, lettura, aggiornamento e cancellazione 
@@ -210,8 +209,7 @@ La struttura in package è organizzata in questo modo:
         tabella del database gestendone inoltre la connessione. 
         Tutto questo viene semplificato grazie al framework Hibernate e quindi 
         il codice da scrivere risulta contenuto.
-        Le funzioni di queste classi vengono chiamate da classi chiamate 
-        \texttt{Service}.
+        Le sue funzioni vengono chiamate da classi chiamate \texttt{Service}.
     \item \texttt{it.consoft.fatturazione.service}:         
         Hanno le stesse funzioni dei DAO più metodi che servono per 
         reperire informazioni specifiche.
@@ -287,14 +285,14 @@ Sono state attuate le seguenti scelte sugli attributi:
         derivato viene comunque messo per velocizzare le operazioni di 
         visualizzazione delle fatture in modo che non si debba fare ogni volta 
         i calcoli dell’ imponibile con le note di credito.
-    \item Sono presenti due chiavi, la prima, chiave primaria, è un \texttt{id} 
+    \item Sono presenti due chiavi. La prima, chiave primaria, è un \texttt{id} 
         numerico auto incrementante mentre la seconda, chiave canditata, è 
         data dalla coppia \texttt{numero\_nota\_credito} e 
         \texttt{data\_emissione}.
         L'attributo \texttt{id\_fattura} è una chiave esterna ed è associata 
-        con l'attributo \texttt{id} che è chiave dell' entità fattura.
-    \item Abbiamo due attributi, \texttt{nome\_report} e 
-        \texttt{contenuto\_report}, che contegono il nome e il contenuto 
+        con l'attributo \texttt{id} dell' entità fattura.
+    \item I due attributi \texttt{nome\_report} e 
+        \texttt{contenuto\_report} contegono il nome e il contenuto 
         del file \texttt{.pdf} della nota di credito generata.
     \item Sono stati inseriti solo l’importo e l’ IVA calcolata in 
         quanto la percentuale dell’ IVA utilizzata e l’importo totale della 
@@ -324,22 +322,21 @@ di nome Mauro Veronese della sede di Padova e Rocco Spenza della sede di Roma.
 Come prima cosa dopo la creazione del database si è dovuto scrivere il Bean per 
 poter mappare la tabella in Hibernate.
 \lstinputlisting[basicstyle=\ttfamily\scriptsize,firstline=22,lastline=64,title=Bean della tabella delle note di credito]{code/bean/NotaDiCredito.java}
-Si è scelto inoltre di indicare tramite le notazioni Java di effettuare un Join
+Si è scelto inoltre di indicare, tramite le notazioni Java, di effettuare un Join
 automatico con la tabella delle fatture essendo che, nella maggioranza delle 
 operazioni, era necessario avere anche i dati della fattura associata.
 \subsection{Lista delle fatture}
 Successivamente si è passato a modificare la lista di visualizzazione delle 
-fatture fatta precedentemente 
-integrando l' inserimento delle note di credito all' interno dell' interfaccia 
-di inserimento fatture.
+fatture 
+integrando la funzione di inserimento e visualizzazione delle note di credito
+inserendo i rispettivi bottoni \includegraphics[scale=0.4]{img/add} e 
+\includegraphics[scale=0.33]{img/list}. 
+Il risultato finale è visibile nell' immagine sottostante.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{img/lista_fatture}
     \caption{Lista delle fatture}\label{img:lista_fatture}
 \end{figure}
-Sono stati inseriti i due bottoni \includegraphics[scale=0.4]{img/add} e 
-\includegraphics[scale=0.4]{img/list} i quali sono rispettivamente per 
-l' inserimento e la visualizzazione della nota di credito per ogni fattura.
 \subsection{Inserimento e modifica della nota di credito}
 In seguito abbiamo cominciato a costruire l' interfaccia per l' inserimento 
 e la modifica di una nota di credito.
@@ -355,18 +352,18 @@ La pagina web di inserimento finita si presenta così.
     \caption{Inserimento e modifica di una nota di credito}\label{fig:insert}
 \end{figure}
 La cui struttura è data dal seguente codice jsp.
-\lstinputlisting[firstline=100,lastline=172,basicstyle=\ttfamily\scriptsize,title=Codice Html della parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
+\lstinputlisting[firstline=100,lastline=172,basicstyle=\ttfamily\scriptsize,title=Codice jsp della parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
 Dove \(\texttt{\$\{azione\}}\) indica il tipo di web request che deve essere
 fatta alla sottomissione della form che viene determinata attraverso il 
 codice di decisione visto precedentemente.
 Il calcolo del totale, per la parte di front-end, viene fatto 
 con codice \texttt{Javascript/jQuery} che esegue i calcoli ogni 
 volta che l'importo o l' iva viene modificato come si può vedere qui sotto.
-\lstinputlisting[firstline=175,lastline=190,basicstyle=\ttfamily\scriptsize,title=Codice javascript per la parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
+\lstinputlisting[firstline=175,lastline=190,basicstyle=\ttfamily\scriptsize,title=Codice Javascript per la parte frontend]{code/view/inserimentoModificaNoteCredito.jsp}
 \subsubsection{Inserimento}
 Prima dell' inserimento dei dati nel database tutti i calcoli però vengono 
 fatti anche in Java dentro al controller per evitare manomissioni 
-nell' inserimento semplicemente modificando l'\texttt{html}.
+nell' inserimento semplicemente modificando codice \texttt{html}.
 Inoltre si utilizza una funzione di Spring per la validazione dei dati.
 Consiste nell' associare al form di inserimento un oggetto di una classe simile
 ad un Bean con delle notazioni Java che verificano se i parametri inviati 
@@ -381,7 +378,7 @@ alla validazione tramite il metodo booleano \texttt{hasErrors}.
 Nel caso in cui la validazione presenti degli errori i messaggi di errore 
 all' interno delle notazioni nella classe di validazione verranno inseriti 
 nell' oggetto \texttt{model} e verranno automaticamente visualizzati dentro 
-ai tag \texttt{form:errors} per ogni attributo in cui è stato trovato l' errore.
+ai tag \texttt{form:errors} per ogni attributo in cui è stato trovato un errore.
 La fase di controlli è scritta in questo listato di codice.
 \lstinputlisting[firstline=255,lastline=285,breaklines=True,basicstyle=\ttfamily\scriptsize,title=parte di reperimento dati e controllo del controller delle note di credito]{code/controller/NotaCreditoController.java}
 Infine, se tutti i controlli vanno a buon fine, avviene la creazione della nota di 
@@ -423,7 +420,7 @@ credito che può essere modificata e/o cancellata.
 \lstinputlisting[firstline=90,lastline=112,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Funzione del controller per ritornare la lista delle note di credito.]{code/controller/NotaCreditoController.java}
 \subsection{Eliminazione della nota di credito}
 Dopodiché si è passati alla funzione di eliminazione della nota di credito.
-Per l'eliminazione nel controller, dopo aver premuto il tasto di cancellazione, 
+Nel controller, dopo aver premuto il tasto di cancellazione, 
 si cancella dal database la nota selezionata e viene
 visualizzata nuovamente la lista delle rimanenti note di credito.
 \lstinputlisting[firstline=114,lastline=139,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Codice per la cancellazione di una nota di credito.]{code/controller/NotaCreditoController.java}
@@ -442,8 +439,8 @@ il nome del file ed infine il contenuto del file che viene inviato utilizzando
 la classe \texttt{OutputStream} per poter inviare i byte del file attraverso 
 lo stream di risposta.
 \lstinputlisting[firstline=535,lastline=571,breaklines=True,basicstyle=\ttfamily\scriptsize,title=Codice per la visualizzazione del pdf di una nota di credito nel browser]{code/controller/NotaCreditoController.java}
-Un esempio di nota di credito generate lo possiamo vedere nell' immagine 
-qui sotto.
+Un esempio di nota di credito generata lo possiamo vedere nell' immagine 
+sottostante.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{pdf/nota}
@@ -451,11 +448,11 @@ qui sotto.
 \end{figure}
 \clearpage
 \chapter{Conclusione del lavoro e commenti finali}
-Terminato lo sviluppo e dopo aver testato tutto nell' ambiente di prova tutto 
-il lavoro svolto è stato caricato sul server di produzione senza la presenza
-di problemi.
+Terminato lo sviluppo e dopo aver testato nell' ambiente di prova tutto 
+il lavoro svolto è stato caricato sul server di produzione senza problemi.
 Durante tutto il lavoro io, Mauro e Rocco abbiamo collaborato 
-attivamente tra di noi e con la nostra responsabile di progetto che, anche
+attivamente tra di noi e con la nostra responsabile di progetto Giulia Paoli
+che, anche
 se non era presente fisicamente per motivi di lavoro, è stata sempre in contatto 
 da remoto rispondendo nostri dubbi e aiutandoci nei momenti di difficoltà.
 Tutto il tirocinio si è svolto senza problemi e le persone con cui ho avuto 
